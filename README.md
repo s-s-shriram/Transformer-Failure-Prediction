@@ -172,7 +172,7 @@ Each transformer is assigned:
 - ├── dataset/
 - │ └── Transformer-Dataset.csv
 - ├── notebooks/
-- │ └── TRANSFORMER_FAILURE_PREDICTION.ipynb
+- │ └── main.ipynb
 - ├── output/
 - │ └── risk_ranked_transformers.csv
 - ├── README.md
