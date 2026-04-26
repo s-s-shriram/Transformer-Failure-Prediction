@@ -99,15 +99,15 @@ The model failed to detect any failure cases due to class imbalance.
 ## ⚙️ System Architecture
 
 Input Data
-↓
+->
 Data Cleaning
-↓
+->
 Feature Engineering
-↓
+->
 Model Training (XGBoost)
-↓
+->
 Risk Scoring
-↓
+->
 Actionable Output
 
 
@@ -169,13 +169,13 @@ Each transformer is assigned:
 ---
 
 ## 📂 Project Structure
-├── dataset/
-│ └── transformer_dataset.csv
-├── notebooks/
-│ └── model_training.ipynb
-├── output/
-│ └── risk_ranked_transformers.csv
-├── README.md
+- ├── dataset/
+- │ └── transformer_dataset.csv
+- ├── notebooks/
+- │ └── model_training.ipynb
+- ├── output/
+- │ └── risk_ranked_transformers.csv
+- ├── README.md
 
 
 ---
