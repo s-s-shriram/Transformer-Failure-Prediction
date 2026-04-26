@@ -170,9 +170,9 @@ Each transformer is assigned:
 
 ## 📂 Project Structure
 - ├── dataset/
-- │ └── transformer_dataset.csv
+- │ └── Transformer-Dataset.csv
 - ├── notebooks/
-- │ └── model_training.ipynb
+- │ └── TRANSFORMER_FAILURE_PREDICTION.ipynb
 - ├── output/
 - │ └── risk_ranked_transformers.csv
 - ├── README.md
