@@ -178,15 +178,11 @@ Each transformer is assigned:
 - ├── README.md
 
 
----
-
-## 🎬 Demo
-👉 demo video link:  
 
 ---
 
 ## 🔗 Links
-- 📁 Google Drive:  
+- 📁 Google Drive: https://drive.google.com/drive/folders/1q3_BGpidGtf__45evzSvcqyOmcIxs_dP
 - 💻 GitHub Repo: https://github.com/s-s-shriram/Transformer-Failure-Prediction/
 
 ---
