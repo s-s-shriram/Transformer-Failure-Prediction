@@ -64,6 +64,7 @@ Real-world observations from electrical field experts:
 The model achieved high accuracy but failed to detect any failure cases due to severe class imbalance.
 
 High accuracy is misleading in rare-event prediction problems.
+
 ---
 
 ## 🔧 Data-Centric Improvements
@@ -80,6 +81,7 @@ High accuracy is misleading in rare-event prediction problems.
 - Applied **SMOTE** to balance failure classes  
 
 Focus was on improving data quality, not increasing model complexity.
+
 ---
 
 ## 🤖 Improved Model
@@ -126,7 +128,9 @@ Missing a failure is more costly than a false alarm.
 - Ensure early detection of critical failures  
 
 A controlled increase in false alarms is acceptable to ensure that no critical failures are missed.
+
 The system balances recall and false alarm rate, prioritizing failure detection while maintaining acceptable operational efficiency.
+
 ---
 
 ## 📌 Key Output
