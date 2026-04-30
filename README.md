@@ -4,7 +4,7 @@
 Transformer failures in power distribution systems lead to **unexpected outages, high maintenance costs, and operational inefficiencies**.  
 Traditional approaches rely on **reactive maintenance**, failing to detect issues in advance.
 
-This project presents a **data-centric AI solution** that predicts transformer failures and enables **proactive maintenance** through risk-based prioritization.
+This project presents a **data-centric AI-based risk decision system** that predicts transformer failures and enables **proactive maintenance** through intelligent risk prioritization.
 
 ---
 
@@ -14,7 +14,7 @@ Predict transformer failures using operational data while addressing real-world 
 - Missing data  
 - Class imbalance  
 - Noisy and inconsistent signals  
-
+The goal is to ensure early failure detection, even in rare-event scenarios.
 ---
 
 ## 💡 Key Idea
@@ -39,7 +39,7 @@ A **synthetic yet realistic dataset** was created to simulate transformer behavi
 - Missing values introduced  
 - Imbalanced data (~7% failure rate)  
 - Time-based operational patterns  
-
+- Designed to closely mimic real transformer operational behavior.
 ---
 
 ## 🧠 Field Insights (Domain Knowledge)
@@ -50,9 +50,8 @@ Real-world observations from electrical field experts:
 - **Voltage fluctuations** cause stress on transformers  
 - Failures occur due to **gradual degradation**, not instantly  
 - Fault detection is often **delayed and reactive**
-
-👉 These insights guided our feature engineering and model design.
-
+  
+👉 These insights directly guided our feature engineering and system design.
 ---
 
 ## ⚠️ Baseline Model
@@ -62,8 +61,9 @@ Real-world observations from electrical field experts:
 - Recall: **0** ❌  
 
 📌 **Observation:**  
-The model failed to detect any failure cases due to class imbalance.
+The model achieved high accuracy but failed to detect any failure cases due to severe class imbalance.
 
+High accuracy is misleading in rare-event prediction problems.
 ---
 
 ## 🔧 Data-Centric Improvements
@@ -79,6 +79,7 @@ The model failed to detect any failure cases due to class imbalance.
 ### 3. Imbalance Handling
 - Applied **SMOTE** to balance failure classes  
 
+Focus was on improving data quality, not increasing model complexity.
 ---
 
 ## 🤖 Improved Model
@@ -110,7 +111,22 @@ Risk Scoring
 ->
 Actionable Output
 
+End-to-end AI pipeline for transformer risk management.
 
+---
+
+## ⚙️ Model Strategy (Engineering Perspective)
+
+In safety-critical systems like power distribution:
+
+Missing a failure is more costly than a false alarm.
+
+- Prioritize Recall over Accuracy  
+- Accept manageable false positives  
+- Ensure early detection of critical failures  
+
+A controlled increase in false alarms is acceptable to ensure that no critical failures are missed.
+The system balances recall and false alarm rate, prioritizing failure detection while maintaining acceptable operational efficiency.
 ---
 
 ## 📌 Key Output
@@ -124,8 +140,9 @@ Each transformer is assigned:
 ---
 
 ### 🔹 Top-K Prioritization
-- Identifies **Top 5 high-risk transformers**  
+- Identifies Top 5 high-risk transformers  
 - Enables prioritized maintenance  
+- Supports Top-K decision-making for resource allocation 
 
 ---
 
@@ -135,7 +152,7 @@ Each transformer is assigned:
   - Risk Score  
   - Risk Level  
 
-👉 Ready for real-world deployment
+👉 From prediction to actionable decision-making for maintenance planning.
 
 ---
 
@@ -145,6 +162,7 @@ Each transformer is assigned:
 - Reduces unexpected failures  
 - Improves **grid reliability**  
 - Supports **data-driven decision-making**
+- Shifts maintenance strategy from **reactive** to **predictive**.
 
 ---
 
@@ -182,6 +200,7 @@ Each transformer is assigned:
 ---
 
 ## 🔗 Links
+- 🔗 Deployed Live Link: https://transformer-failure-prediction-deploy-sss.streamlit.app/
 - 📁 Google Drive: https://drive.google.com/drive/folders/1q3_BGpidGtf__45evzSvcqyOmcIxs_dP
 - 💻 GitHub Repo: https://github.com/s-s-shriram/Transformer-Failure-Prediction/
 
@@ -194,4 +213,4 @@ B.Tech AI & Data Science
 ---
 
 ## 🔥 Final Note
-> **From prediction to decision-making — enabling smarter and more reliable power systems.**
+> **We improved recall from 0 to 91% by solving data quality issues and enabling proactive transformer maintenance.**
