@@ -1,220 +1,388 @@
-# 🏆 GRIDTITAN — AI-Based Transformer Failure Prediction
+# ⚡ GRIDTITAN — Data-Centric AI System for Distribution Transformer Risk Intelligence
 
-## 🚀 Overview
-Transformer failures in power distribution systems lead to **unexpected outages, high maintenance costs, and operational inefficiencies**.  
-Traditional approaches rely on **reactive maintenance**, failing to detect issues in advance.
+## 🏆 Overview
 
-This project presents a **data-centric AI-based risk decision system** that predicts transformer failures and enables **proactive maintenance** through intelligent risk prioritization.
+Distribution transformers are critical components in electrical power distribution networks. Unexpected transformer failures can lead to:
+
+- ⚠️ Power outages  
+- ⚠️ Equipment damage  
+- ⚠️ Increased maintenance costs  
+- ⚠️ Industrial and agricultural disruptions  
+
+Traditional maintenance systems are mostly **reactive**, where failures are identified only after faults occur.
+
+GRIDTITAN presents a **data-centric AI-powered transformer risk intelligence system** designed to:
+
+✅ Predict transformer failure risk  
+✅ Identify probable root causes  
+✅ Prioritize high-risk transformers  
+✅ Enable proactive maintenance planning  
 
 ---
 
-## 🎯 Problem Statement
-Predict transformer failures using operational data while addressing real-world challenges such as:
+# 🎯 Problem Statement
 
-- Missing data  
-- Class imbalance  
-- Noisy and inconsistent signals  
-The goal is to ensure early failure detection, even in rare-event scenarios.
+Develop an intelligent transformer monitoring and risk prediction system capable of handling real-world operational challenges such as:
+
+- Missing sensor values  
+- Rare failure events  
+- Noisy electrical signals  
+- Voltage instability  
+- Thermal overload conditions  
+
+The objective is to improve early failure detection and reduce unexpected transformer breakdowns.
+
 ---
 
-## 💡 Key Idea
+# 💡 Core Idea
+
 > **We improved the data, not just the model.**
 
-Instead of focusing only on model complexity, we applied a **data-centric approach** to enhance prediction quality.
+Instead of relying only on complex machine learning models, the project follows a **data-centric AI approach** focused on:
+
+- Improving data quality  
+- Engineering realistic operational features  
+- Handling imbalance effectively  
+- Generating actionable maintenance decisions  
 
 ---
 
-## 📊 Dataset
+# ⚡ Transformer Focus
 
-A **synthetic yet realistic dataset** was created to simulate transformer behavior in real-world conditions.
+The proposed system primarily focuses on:
 
-### 🔹 Features
-- Load  
-- Temperature  
-- Voltage  
-- Current  
-- Power  
+## ✅ Distribution Transformers
 
-### 🔹 Real-World Characteristics
-- Missing values introduced  
-- Imbalanced data (~7% failure rate)  
+Failure scenarios considered:
+
+- Thermal Overload  
+- Voltage Instability  
+- Electrical Stress  
+- Sudden Load Variation  
+- Age-related Degradation  
+
+---
+
+# 📊 Ultra-Realistic Dataset
+
+A highly realistic synthetic dataset was generated to simulate real-world transformer operating conditions.
+
+## 🔹 Dataset Characteristics
+
 - Time-based operational patterns  
-- Designed to closely mimic real transformer operational behavior.
----
-
-## 🧠 Field Insights (Domain Knowledge)
-
-Real-world observations from electrical field experts:
-
-- **Load spikes** (motor usage) lead to overheating  
-- **Voltage fluctuations** cause stress on transformers  
-- Failures occur due to **gradual degradation**, not instantly  
-- Fault detection is often **delayed and reactive**
-  
-👉 These insights directly guided our feature engineering and system design.
----
-
-## ⚠️ Baseline Model
-
-- Model: Logistic Regression  
-- Accuracy: **94%**  
-- Recall: **0** ❌  
-
-📌 **Observation:**  
-The model achieved high accuracy but failed to detect any failure cases due to severe class imbalance.
-
-High accuracy is misleading in rare-event prediction problems.
+- Seasonal stress behavior  
+- Voltage fluctuation scenarios  
+- Agricultural load patterns  
+- Rolling overload duration  
+- Thermal stress accumulation  
+- Sensor noise simulation  
+- Missing sensor values  
+- Root-cause labels  
+- Class imbalance conditions  
 
 ---
 
-## 🔧 Data-Centric Improvements
+# 📌 Dataset Features
 
-### 1. Data Cleaning
-- Handled missing values using mean imputation  
-
-### 2. Feature Engineering
-- **Thermal Stress** = Load × Temperature  
-- **Overload Indicator**  
-- **Load Ratio**  
-
-### 3. Imbalance Handling
-- Applied **SMOTE** to balance failure classes  
-
-Focus was on improving data quality, not increasing model complexity.
+| Feature | Description |
+|---|---|
+| load | Transformer load condition |
+| temperature | Operating temperature |
+| voltage | Voltage behavior |
+| current | Current flow |
+| power | Power consumption |
+| thermal_stress | Load × temperature stress |
+| voltage_deviation | Voltage instability indicator |
+| current_stress | Electrical stress level |
+| load_fluctuation | Sudden operational variation |
+| rolling_thermal_stress | Accumulated thermal degradation |
+| rolling_overload_hours | Overload duration tracking |
 
 ---
 
-## 🤖 Improved Model
+# 🧠 Field Insights & Domain Knowledge
 
-- Model: XGBoost  
+The system design was inspired by real-world observations from electrical field personnel and maintenance workers.
 
-### 📈 Performance
+## Key Insights
+
+- Load spikes increase transformer overheating risk  
+- Voltage fluctuations stress transformer insulation  
+- Failures occur gradually due to long-term degradation  
+- Reactive maintenance delays fault identification  
+- Agricultural motor usage causes unstable load behavior  
+
+These insights directly influenced:
+
+✅ Feature engineering  
+✅ Failure logic  
+✅ Risk scoring strategy  
+✅ Root-cause analysis  
+
+---
+
+# ⚠️ Baseline Model Analysis
+
+## Baseline Model
+- Logistic Regression
+
+## Baseline Performance
+
+| Metric | Value |
+|---|---|
+| Accuracy | 94% |
+| Recall | 0 |
+
+## Why Recall Became 0?
+
+The dataset contains very limited failure cases compared to normal operating conditions.
+
+As a result:
+
+- The baseline model became biased toward the majority class  
+- Most samples were predicted as “Normal”  
+- No transformer failures were detected  
+
+This demonstrates that:
+
+> **High accuracy alone is misleading in rare-event prediction problems.**
+
+---
+
+# 🔧 Data-Centric Improvements
+
+## 1️⃣ Advanced Missing Value Handling
+- KNN Imputation
+
+## 2️⃣ Feature Engineering
+Created realistic transformer degradation indicators:
+
+- Thermal Stress  
+- Voltage Deviation  
+- Load Fluctuation  
+- Current Stress  
+- Rolling Overload Hours  
+
+## 3️⃣ Imbalance Handling
+- SMOTE applied for balancing failure classes
+
+## 4️⃣ Recall-Focused Prediction Strategy
+Prioritized early failure detection over maximizing accuracy.
+
+---
+
+# 🤖 Improved AI Model
+
+## Final Model
+- XGBoost Classifier
+
+---
+
+# 📈 Performance Comparison
 
 | Metric | Baseline | Improved |
-|--------|----------|----------|
+|---|---|---|
 | Accuracy | 94% | ~89% |
 | Recall | 0 | **~91%** 🔥 |
 
-> 🚀 **Recall improved from 0 to 91%**, enabling effective failure detection.
+## Key Achievement
+
+> 🚀 Recall improved from **0 → 91%**, enabling effective early transformer failure detection.
 
 ---
 
-## ⚙️ System Architecture
+# ⚙️ Engineering Strategy
 
+In power distribution systems:
+
+> Missing a transformer failure is more dangerous than generating a false alarm.
+
+Therefore, the system prioritizes:
+
+✅ High Recall  
+✅ Early Warning  
+✅ Failure Prevention  
+
+instead of focusing only on accuracy.
+
+---
+
+# 🏗️ System Architecture
+
+```text
 Input Data
-->
+   ↓
 Data Cleaning
-->
+   ↓
+KNN Missing Value Handling
+   ↓
 Feature Engineering
-->
-Model Training (XGBoost)
-->
+   ↓
+SMOTE Balancing
+   ↓
+XGBoost Model
+   ↓
 Risk Scoring
-->
-Actionable Output
-
-End-to-end AI pipeline for transformer risk management.
-
----
-
-## ⚙️ Model Strategy (Engineering Perspective)
-
-In safety-critical systems like power distribution:
-
-Missing a failure is more costly than a false alarm.
-
-- Prioritize Recall over Accuracy  
-- Accept manageable false positives  
-- Ensure early detection of critical failures  
-
-A controlled increase in false alarms is acceptable to ensure that no critical failures are missed.
-
-The system balances recall and false alarm rate, prioritizing failure detection while maintaining acceptable operational efficiency.
+   ↓
+Root Cause Analysis
+   ↓
+Priority Maintenance Queue
+```
 
 ---
 
-## 📌 Key Output
+# 🚨 Intelligent Risk Output
 
-### 🔹 Risk Scoring System
-Each transformer is assigned:
+Each transformer receives:
 
-- **Risk Score (0–1)**  
-- **Risk Level:** Low / Medium / High  
-
----
-
-### 🔹 Top-K Prioritization
-- Identifies Top 5 high-risk transformers  
-- Enables prioritized maintenance  
-- Supports Top-K decision-making for resource allocation 
+- Risk Score (0–1)
+- Risk Level
+- Root Cause
+- Maintenance Recommendation
 
 ---
 
-### 🔹 Downloadable Report
-- Generates a CSV file with:
-  - Transformer ID  
-  - Risk Score  
-  - Risk Level  
+# 🔍 Root Cause Identification
 
-👉 From prediction to actionable decision-making for maintenance planning.
+The system identifies probable transformer failure causes such as:
 
----
-
-## 🌍 Impact
-
-- Enables **proactive maintenance**  
-- Reduces unexpected failures  
-- Improves **grid reliability**  
-- Supports **data-driven decision-making**
-- Shifts maintenance strategy from **reactive** to **predictive**.
+- Thermal Overload  
+- Voltage Instability  
+- Electrical Stress  
+- Sudden Load Variation  
+- Age-related Degradation  
 
 ---
 
-## 🏆 Why This Solution Stands Out
+# 🛠️ Maintenance Intelligence
 
-- Data-centric approach (not model-centric)  
-- Real-world field insights integration  
-- Handles class imbalance effectively  
-- Converts predictions into **actionable decisions**  
-- Scalable to real smart grid systems  
+The model generates:
+
+## ✅ Priority Maintenance Queue
+
+Top high-risk transformers are automatically ranked for inspection.
+
+## ✅ Maintenance Recommendations
+
+Examples:
+
+- Immediate inspection required  
+- Monitor closely  
+- Stable condition  
 
 ---
 
-## 🛠️ Tech Stack
+# 📥 Downloadable Output
+
+The system generates a downloadable maintenance report containing:
+
+- Transformer ID  
+- Risk Score  
+- Risk Level  
+- Root Cause  
+- Maintenance Action  
+
+---
+
+# 🌍 Real-World Impact
+
+GRIDTITAN supports:
+
+✅ Predictive Maintenance  
+✅ Reduced Unexpected Failures  
+✅ Improved Grid Reliability  
+✅ Faster Fault Identification  
+✅ Smarter Resource Allocation  
+✅ Reduced Operational Downtime  
+
+The system transforms maintenance strategy from:
+
+> ❌ Reactive Maintenance  
+➡️  
+> ✅ Proactive AI-driven Maintenance
+
+---
+
+# 🏆 Why GRIDTITAN Stands Out
+
+✅ Data-centric AI approach  
+✅ Root-cause-aware risk prediction  
+✅ Realistic industrial dataset simulation  
+✅ Recall-focused engineering strategy  
+✅ Actionable maintenance intelligence  
+✅ Explainable AI-driven decision support  
+✅ Scalable for smart grid systems  
+
+---
+
+# 🛠️ Technology Stack
 
 - Python  
 - Pandas  
+- NumPy  
 - Scikit-learn  
 - XGBoost  
 - Imbalanced-learn (SMOTE)  
+- Streamlit  
+- Matplotlib  
 
 ---
 
-## 📂 Project Structure
-- ├── dataset/
-- │ └── Transformer-Dataset.csv
-- ├── notebooks/
-- │ └── main.ipynb
-- ├── output/
-- │ └── risk_ranked_transformers.csv
-- ├── README.md
+# 📂 Repository Structure
 
-
+```text
+Transformer-Failure-Prediction/
+│
+├── dataset/
+│   ├── Ultra_Realistic_Distribution_Transformer_Dataset_Sample.csv
+│   └── High_Load_Stress_Transformer_Dataset.csv
+│
+├── notebooks/
+│   └── GRIDTITAN_Distribution_Transformer_Risk_System.ipynb
+│
+├── output/
+│   └── risk_ranked_transformers.csv
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+└── assets/
+    ├── architecture.png
+    ├── flowchart.png
+    └── demo_screenshot.png
+```
 
 ---
 
-## 🔗 Links
-- 🔗 Deployed Live Link: https://transformer-failure-prediction-deploy-sss.streamlit.app/
-- 📁 Google Drive: https://drive.google.com/drive/folders/1q3_BGpidGtf__45evzSvcqyOmcIxs_dP
-- 💻 GitHub Repo: https://github.com/s-s-shriram/Transformer-Failure-Prediction/
+# 🚀 Streamlit Deployment
+
+## Live Demo
+
+🔗 Streamlit App:  
+https://transformer-failure-prediction-deploy-sss.streamlit.app/
 
 ---
 
-## 👤 Author
-**S.S.SHRIRAM**  
-B.Tech AI & Data Science  
+# 📁 Additional Resources
+
+📁 Google Drive:  
+https://drive.google.com/drive/folders/1q3_BGpidGtf__45evzSvcqyOmcIxs_dP
+
+💻 GitHub Repository:  
+https://github.com/s-s-shriram/Transformer-Failure-Prediction/
 
 ---
 
-## 🔥 Final Note
-> **We improved recall from 0 to 91% by solving data quality issues and enabling proactive transformer maintenance.**
+# 👨‍💻 Author
+
+## S.S.SHRIRAM
+B.Tech Artificial Intelligence & Data Science
+
+---
+
+# 🔥 Final Note
+
+> “GRIDTITAN transforms transformer operational data into actionable maintenance intelligence using data-centric AI.”
+
+> “From reactive maintenance to proactive transformer risk intelligence.”
