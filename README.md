@@ -43,7 +43,7 @@ Instead of relying only on complex machine learning models, the project follows 
 - Improving data quality  
 - Engineering realistic operational features  
 - Handling imbalance effectively  
-- Generating actionable maintenance decisions  
+- Generating actionable maintenance decisions 
 
 ---
 
@@ -228,7 +228,7 @@ Root Cause Analysis
    ↓
 Priority Maintenance Queue
 ```
-
+![Architecture](Assets/Architecture.png)
 ---
 
 # 🚨 Intelligent Risk Output
