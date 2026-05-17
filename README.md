@@ -228,7 +228,7 @@ Root Cause Analysis
    ↓
 Priority Maintenance Queue
 ```
-![System Architecture](Assets/System_Architecture.png)
+![System Architecture](Assets/System Architecture.png)
 ---
 
 # 🚨 Intelligent Risk Output
