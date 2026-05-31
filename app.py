@@ -10,7 +10,7 @@ from imblearn.over_sampling import SMOTE
 from xgboost import XGBClassifier
 
 # ==============================
-# PAGE CONFIG
+# PAGE CONFIGURATION
 # ==============================
 st.set_page_config(
     page_title="GRIDTITAN - Transformer Risk Intelligence",
