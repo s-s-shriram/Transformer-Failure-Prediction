@@ -360,7 +360,7 @@ Transformer-Failure-Prediction/
 ## Live Demo
 
 🔗 Streamlit App:  
-https://transformer-failure-prediction-deploy-sss.streamlit.app/
+[https://transformer-failure-prediction-deploy-sss.streamlit.app/](https://transformer-failure-prediction-app-sss.streamlit.app/)
 
 ---
 
