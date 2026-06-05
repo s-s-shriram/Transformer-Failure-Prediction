@@ -10,10 +10,6 @@ from sklearn.impute import KNNImputer
 from imblearn.over_sampling import SMOTE
 from xgboost import XGBClassifier
 
-
-# ==============================
-# PAGE CONFIG
-# ==============================
 st.set_page_config(
     page_title="GRIDTITAN - Transformer Risk Intelligence",
     page_icon="⚡",
@@ -27,9 +23,7 @@ st.write(
 )
 
 
-# ==============================
-# HELPER FUNCTIONS
-# ==============================
+
 def classify_risk(score):
     if score >= 0.70:
         return "High"
@@ -87,9 +81,7 @@ def rule_based_score(load, temperature, voltage, current, power):
     return min(score, 0.99)
 
 
-# ==============================
-# SESSION STATE
-# ==============================
+
 if "auto_id" not in st.session_state:
     st.session_state.auto_id = 1001
 
@@ -106,9 +98,7 @@ if "load_fluctuation_threshold" not in st.session_state:
     st.session_state.load_fluctuation_threshold = 25
 
 
-# ==============================
-# TRANSFORMER TYPE
-# ==============================
+
 transformer_type = st.selectbox(
     "Select Transformer Type",
     ["Distribution Transformer", "Power Transformer", "Pole-Mounted Transformer"],
@@ -121,17 +111,12 @@ st.info(
 )
 
 
-# ==============================
-# TABS
-# ==============================
+
 tab1, tab2 = st.tabs(
     ["📂 Upload CSV & Train Model", "🧪 Manual Transformer Test"]
 )
 
 
-# ======================================================
-# TAB 1: CSV UPLOAD MODE
-# ======================================================
 with tab1:
 
     with st.expander("📄 Expected CSV Format"):
@@ -187,9 +172,7 @@ with tab1:
         st.subheader("🔍 Missing Value Summary")
         st.write(data.isnull().sum())
 
-        # ==============================
         # KNN IMPUTATION
-        # ==============================
         numeric_cols = [
             "load",
             "temperature",
@@ -201,9 +184,8 @@ with tab1:
         imputer = KNNImputer(n_neighbors=5)
         data[numeric_cols] = imputer.fit_transform(data[numeric_cols])
 
-        # ==============================
+
         # FEATURE ENGINEERING
-        # ==============================
         data["thermal_stress"] = data["load"] * data["temperature"]
         data["overload"] = (data["load"] > 80).astype(int)
         data["load_ratio"] = data["load"] / 100
@@ -243,9 +225,8 @@ with tab1:
             )
             st.stop()
 
-        # ==============================
+
         # SMOTE
-        # ==============================
         smote = SMOTE(
             random_state=42,
             k_neighbors=min(5, class_counts.min() - 1)
@@ -256,9 +237,6 @@ with tab1:
         st.subheader("⚖️ Class Balance After SMOTE")
         st.write(pd.Series(y_res).value_counts())
 
-        # ==============================
-        # TRAIN TEST SPLIT
-        # ==============================
         X_train, X_test, y_train, y_test = train_test_split(
             X_res,
             y_res,
@@ -266,9 +244,6 @@ with tab1:
             random_state=42
         )
 
-        # ==============================
-        # MODEL TRAINING
-        # ==============================
         model = XGBClassifier(
             eval_metric="logloss",
             random_state=42
@@ -283,9 +258,7 @@ with tab1:
         precision = precision_score(y_test, y_pred, zero_division=0)
         recall = recall_score(y_test, y_pred)
 
-        # ==============================
-        # MODEL PERFORMANCE
-        # ==============================
+
         st.subheader("📊 Model Performance")
 
         c1, c2, c3, c4 = st.columns(4)
@@ -300,9 +273,7 @@ with tab1:
             "while precision helps monitor false alarms."
         )
 
-        # ==============================
-        # RISK INTELLIGENCE METRICS
-        # ==============================
+
         test_data = pd.DataFrame(X_test, columns=features)
         test_data["actual_failure"] = y_test.values
         test_data["risk_score"] = y_prob
@@ -341,9 +312,7 @@ with tab1:
         m2.metric("False Alarm Rate", f"{false_alarm_rate:.2f}")
         m3.metric("Estimated Lead Time", f"{lead_time:.1f} weeks")
 
-        # ==============================
-        # RISK SCORING
-        # ==============================
+
         data["risk_score"] = model.predict_proba(X)[:, 1]
         data["risk_level"] = data["risk_score"].apply(classify_risk)
         data["risk_status"] = data["risk_level"].apply(risk_status)
@@ -381,9 +350,7 @@ with tab1:
         st.session_state.trained_model = model
         st.session_state.features = features
 
-        # ==============================
-        # TOP 5 MAINTENANCE QUEUE
-        # ==============================
+
         st.subheader(
             "🚨 Priority Maintenance Queue - Top 5 High-Risk Transformers"
         )
@@ -401,9 +368,6 @@ with tab1:
 
         st.dataframe(top_5)
 
-        # ==============================
-        # DOWNLOAD REPORT
-        # ==============================
         csv = ranked_data[
             [
                 "transformer_id",
@@ -422,9 +386,6 @@ with tab1:
             mime="text/csv"
         )
 
-        # ==============================
-        # FEATURE IMPORTANCE
-        # ==============================
         st.subheader("📌 Feature Importance")
 
         fig, ax = plt.subplots()
@@ -433,9 +394,6 @@ with tab1:
         ax.set_title("Feature Importance")
         st.pyplot(fig)
 
-        # ==============================
-        # RISK LEVEL DISTRIBUTION
-        # ==============================
         st.subheader("📌 Risk Level Distribution")
 
         fig2, ax2 = plt.subplots()
@@ -445,9 +403,6 @@ with tab1:
         ax2.set_title("Transformer Risk Level Count")
         st.pyplot(fig2)
 
-        # ==============================
-        # CONFUSION MATRIX
-        # ==============================
         st.subheader("📌 Confusion Matrix")
 
         cm = confusion_matrix(y_test, y_pred)
@@ -464,9 +419,7 @@ with tab1:
 
         st.pyplot(fig3)
 
-        # ==============================
-        # COLORED SAMPLE RISK MAP
-        # ==============================
+
         st.subheader("🗺️ Sample Transformer Risk Map")
 
         map_data = ranked_data.head(30).copy()
@@ -515,9 +468,6 @@ with tab1:
         )
 
 
-# ======================================================
-# TAB 2: MANUAL TEST MODE
-# ======================================================
 with tab2:
 
     st.subheader("🧪 Manual Single Transformer Risk Test")
